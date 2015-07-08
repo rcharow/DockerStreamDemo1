@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
     retStr+=chunk;
   });
   req.on('end',function(){
-    console.log(JSON.stringify(retStr)); 
+    console.log(JSON.stringify(retStr));
     res.send('success!');
   })
 });
