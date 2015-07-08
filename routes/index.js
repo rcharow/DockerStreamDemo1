@@ -8,8 +8,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   console.log("HITTING TEST ROUTE");
-  console.log("AT TEST ROUTE",req.body.data)
-  res.render('index', { title: req.body.data });
+  console.log("AT TEST ROUTE",req.body)
+  req.setEncoding('utf8');
+  var retStr = "";
+  req.on('data',function(chunk){
+    retStr+=chunk;
+  });
+  req.on('end',function(){
+    console.log(JSON.stringify(retStr)); 
+    res.send('success!');
+  })
 });
 
 module.exports = router;
